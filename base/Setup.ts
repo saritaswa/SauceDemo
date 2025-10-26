@@ -6,7 +6,7 @@ import { chromium,Page, Browser} from "@playwright/test"
        let page: Page
 
 BeforeAll(async function(){    
-    Browser=await chromium.launch({headless:false})
+    Browser=await chromium.launch({headless:true})
     page=await Browser.newPage()
     
  })
