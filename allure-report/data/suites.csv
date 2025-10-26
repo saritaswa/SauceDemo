@@ -1,0 +1,2 @@
+"DESCRIPTION","DURATION IN MS","NAME","PARENT SUITE","START TIME","STATUS","STOP TIME","SUB SUITE","SUITE","TEST CLASS","TEST METHOD"
+"","4947","successfull purchase of one item","chromium","Mon Oct 27 08:23:09 AEDT 2025","passed","Mon Oct 27 08:23:14 AEDT 2025","","tests\Login.spec.ts","",""
