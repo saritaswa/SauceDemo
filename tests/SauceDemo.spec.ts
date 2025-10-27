@@ -2,7 +2,7 @@ import { test, expect } from '../base/Fixture';
 import {  TEST_USERS } from '../testData/Login.data';
 import { TEST_INFO } from '../testData/Info.data';
 import { ITEM } from '../testData/CartItem.data';
-import { FinishCheckoutPage } from '../pages/FinishCheckoutPage';
+
 
 test.describe.serial('SauceDemo E2E Test Suite', () => {
 test('1. Successfull purchase of one item', async ({ page, loginPage, productPage,yourCartPage,yourInfoPage,finishCheckoutPage,orderCompletePage }) => {
