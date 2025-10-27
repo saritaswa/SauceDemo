@@ -6,6 +6,8 @@ export class YourCartPage {
   readonly continueShoppingButton: Locator;
   readonly cartItems: Locator;
   readonly cartTitle: Locator;
+  readonly inventoryItemName: Locator;
+  readonly inventoryItemPrice: Locator;
 
   constructor(page: Page) {
     this.page = page;
@@ -13,6 +15,8 @@ export class YourCartPage {
     this.continueShoppingButton = page.locator('[data-test="continue-shopping"]');
     this.cartItems = page.locator('.cart_item');
     this.cartTitle = page.getByText('your cart');
+    this.inventoryItemName = page.locator('.inventory_item_name');
+    this.inventoryItemPrice = page.locator('.inventory_item_price');
   }
 
   async getItemQuantity(itemName:string): Promise<string | null> {
@@ -26,11 +30,11 @@ export class YourCartPage {
   }
 
   async getItemName(): Promise<string | null> {
-    return await this.page.locator('.inventory_item_name').first().textContent();
+    return await this.inventoryItemName.first().textContent();
   }
 
   async getItemPrice(): Promise<string | null> {
-    return await this.page.locator('.inventory_item_price').first().textContent();
+    return await this.inventoryItemPrice.first().textContent();
   }
   async validateItemsInCart(){
 

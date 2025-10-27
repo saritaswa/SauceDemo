@@ -7,6 +7,7 @@ export class ProductPage {
   readonly productsContainer: Locator;
   readonly productTitle: Locator;
   readonly cartShoppingButton: Locator;
+  
 
   constructor(page: Page, ) {
     this.page = page
