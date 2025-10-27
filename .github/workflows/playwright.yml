@@ -8,6 +8,8 @@ on:
   workflow_dispatch:  
     push:
       branches: [ main, master ]
+  container:
+      image: mcr.microsoft.com/playwright:v1.56.1-noble
 
 
 jobs:
