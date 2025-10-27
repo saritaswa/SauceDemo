@@ -12,7 +12,7 @@ export class YourCartPage {
     this.checkoutButton = page.locator('[data-test="checkout"]');
     this.continueShoppingButton = page.locator('[data-test="continue-shopping"]');
     this.cartItems = page.locator('.cart_item');
-    this.cartTitle = page.locator('.title');
+    this.cartTitle = page.getByText('your cart');
   }
 
   async getItemQuantity(itemName:string): Promise<string | null> {
@@ -34,11 +34,9 @@ export class YourCartPage {
   }
   async validateItemsInCart(){
 
-   // expect (await this.getItemQuantity()).toBe('1')
     expect (await this.getItemName()).toBe('Sauce Labs Backpack')
-    expect (await this.getItemPrice()).toBe('$29.99')   
- //   expect (await this.getItemDescription('Sauce Labs Backpack')).toBe('carry.allTheThings() with the sleek, streamlined Sly Pack that melds uncompromising style with unequaled laptop and tablet protection.') 
-
+    expect (await this.getItemPrice()).toBe('$29.99')  
+   
   }
 
   async removeItemButton(itemName: string) {

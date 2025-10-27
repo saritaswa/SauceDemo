@@ -43,6 +43,4 @@ export class YourInfoCheckoutPage {
     await this.continueButton.click();
   }
 
-
-
 }
