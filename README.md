@@ -362,34 +362,70 @@ npx allure open allure-report
 - **Fixture Pattern**: Reusable test setup and teardown
 - **Data-Driven Testing**: External test data management
 
-### Best Practices
 
-- ✅ Type-safe TypeScript code
-- ✅ Modular and maintainable structure
-- ✅ Comprehensive test coverage
-- ✅ Detailed reporting and logging
-- ✅ CI/CD integration
-- ✅ Version-controlled test data
-- ✅ Parallel test execution support
+I'll analyze the test execution and configuration to identify the assumptions made. Let me examine the key files:
 
-## 📝 Notes
+Read SauceDemo.spec.ts
 
-- Tests are configured to run serially (`test.describe.serial`) to maintain state consistency
-- Base URL is configured globally: `https://www.saucedemo.com`
-- Headless mode is enabled by default for faster execution
-- Traces are captured on first retry for debugging failures
-- Allure reports provide detailed test execution insights
+Read playwright.config.ts, lines 1 to 50
 
-## 🤝 Contributing
+Read playwright.yml
 
-1. Fork the repository
-2. Create your feature branch
-3. Commit your changes
-4. Push to the branch
-5. Create a Pull Request
+Read Login.data.ts, lines 1 to 30
 
-## 📄 License
+Read Info.data.ts
 
+Read CartItem.data.ts
+
+Based on my analysis of the test execution files, here are the key assumptions made during test execution:
+
+🔍 Assumptions Made During Test Execution
+
+1. Test Data Assumptions
+   
+Product Selection: Always uses index 0 (first product - "Sauce Labs Backpack")
+Assumes the first product is always available and in stock
+Assumes product order doesn't change
+Hardcoded Product Details: Tax rate (8%), shipping method ("Free Pony Express Delivery"), and payment method ("SauceCard #31337") are fixed
+Customer Information: Uses the same test user data (Saru Swami, 2167) for all checkout tests
+
+
+3. Test Order Dependencies
+Serial Execution: Tests use test.describe.serial()
+Assumes tests must run in a specific order
+If one test fails, subsequent tests may be skipped
+Risky: Test 1's state might affect Tests 3-5
+
+4. Browser & Environment Assumptions
+Single Browser Testing: Only Chromium is enabled (Firefox and WebKit are commented out)
+Headless Mode: Always runs headless (headless: true)
+No Action Timeout: actionTimeout: 0 means unlimited wait
+
+
+6. Application State Assumptions
+Clean State: Each test assumes a fresh browser state via fixtures
+No Session Persistence: Assumes no cookies/storage between tests
+Cart Resets: Tests 3, 4, and 5 assume cart is empty at start
+User Availability: Assumes standard_user is always available 
+
+7. CI/CD Assumptions
+Ubuntu Only: Workflow runs on ubuntu-latest
+Assumes no OS-specific issues
+Not testing on Windows or macOS
+60-Minute Timeout: Assumes all tests complete within 60 minutes
+Single Worker on CI: workers: 1 on CI means no parallel execution
+Assumes tests are too dependent to run in parallel
+
+
+8. Test Validation Assumptions
+Same Item Throughout: Tests 1, 3, 4, and 5 all use the same product (index 0)
+No Price Changes: Hardcoded prices assume they never change on the website
+
+
+10. Page Object Assumptions
+Method Names Match Actions: Assumes method names clearly indicate what they do
+No Page Navigation Failures: No explicit wait for page loads between steps
+Element Stability: Assumes elements don't move or change during interactions
 ISC
 
 ---
