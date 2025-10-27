@@ -3,11 +3,15 @@ import { Page, Locator,expect } from '@playwright/test';
 export class FinishCheckoutPage {
   readonly page: Page;
   readonly finishButton: Locator;
+  readonly cancelButton: Locator;
+  readonly homepageTitle:Locator;
   
 
   constructor(page: Page) {
     this.page = page;
     this.finishButton = page.locator('.btn_action.cart_button');
+    this.cancelButton = page.locator('button[data-test="cancel"]');
+    this.homepageTitle=page.locator('.title')
   }
 
   
@@ -61,6 +65,14 @@ export class FinishCheckoutPage {
   async clickFinishButton() {
     await this.finishButton.click();
   }
+  async clickCancelButton() {
+    await this.cancelButton.click();
+
+  }
+  async validateHomePageAfterBackHomeButton() {
+    
+    await expect(this.homepageTitle).toBeVisible()
+ }
 
 }
 

@@ -44,6 +44,10 @@ export class YourCartPage {
   async removeItemButton(itemName: string) {
     const cartItem = this.cartItems.filter({ hasText: itemName });
     await cartItem.locator('.btn_secondary').click();
+  
+  }
+  async validatecartItemisRemoved():Promise<Boolean> {
+    return await this.cartItems.count()===0
   }
 
   async clickCheckoutButton() {

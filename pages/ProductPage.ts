@@ -20,9 +20,9 @@ async addToCartButton(productNumber:number)
 {
     await this.addtoCartButton.nth(productNumber).click();
 }
-async removeButton()
+async clickRemoveButton(productNumber:number)
 {
- await this.removefromCartButton.click();
+ await this.removefromCartButton.nth(productNumber).click();
 }
 async getCartItemsCount(): Promise<number> {
 
@@ -32,7 +32,7 @@ async checkifItemAddedToCart(): Promise<Boolean> {
     return await (this.getCartItemsCount())>0
 }
 async checkIfItemRemovedfromCart(): Promise<Boolean> {
-    this.removeButton()
+     
     return await (this.getCartItemsCount())==0           
 }
 async clickProceedToCheckout()

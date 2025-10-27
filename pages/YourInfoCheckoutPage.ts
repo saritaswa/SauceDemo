@@ -2,9 +2,7 @@ import { Page, Locator } from '@playwright/test';
 import { TEST_INFO } from '../testData/Info.data';
 
 export class YourInfoCheckoutPage {
-  fillYourInfoPage(firstName: any, lastName: any, zipCode: any) {
-      throw new Error('Method not implemented.');
-  }
+ 
   readonly page: Page;
   readonly firstNameInput: Locator;
   readonly lastNameInput: Locator;
