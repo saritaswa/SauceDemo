@@ -8,15 +8,15 @@ on:
   workflow_dispatch:  
     push:
       branches: [ main, master ]
-  container:
-      image: mcr.microsoft.com/playwright:v1.56.1-noble
+  
 
 
 jobs:
   test:
     timeout-minutes: 60
     runs-on: ubuntu-latest
-    
+    container:
+      image: mcr.microsoft.com/playwright:v1.56.1-noble
     steps:
     - name: Checkout code
       uses: actions/checkout@v4
